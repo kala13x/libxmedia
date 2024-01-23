@@ -64,30 +64,32 @@ sudo make install
 xmedia [options]
 ```
 
-#### Options:
-- `-i <path>` Input file or stream path (*)
-- `-o <path>` Output file or stream path (*)
-- `-e <format>` Input format name (example: v4l2)
-- `-f <format>` Output format name (example: mp4)
-- `-x <format>` Video scale format (example: aspect)
-- `-p <format>` Video pixel format (example: yuv420p)
-- `-s <format>` Audio sample format (example: s16p)
-- `-k <num:den>` Video frame rate (example: 90000:3000)
-- `-q <number>` Audio sample rate (example: 48000)
-- `-c <number>` Audio channel count (example: 2)
-- `-v <codec>` Output video codec (example: h264)
-- `-a <codec>` Output audio codec (example: mp3)
-- `-w <width>` Output video width (example: 1280)
-- `-h <height>` Output video height (example: 720)
-- `-b <bytes>` IO buffer size (default: 65536)
-- `-t <type>` Timestamp calculation type
-- `-m <path>` Metadata file path
-- `-n <number>` Fix non-motion PTS/DTS
-- `-z` Custom output handling
-- `-l` Loop transcoding/remuxing
-- `-r` Remux only
-- `-d` Debug logs
-- `-u` Usage information
+##### Command-line options:
+Option     | Syntax    | Type           | Description
+-----------|-----------|----------------|---------------------------
+`-i`       | path      | string         | Input file or stream path
+`-o`       | path      | string         | Output file or stream path
+`-e`       | format    | string         | Input format name (example: v4l2)
+`-f`       | format    | string         | Output format name (example: mp4)
+`-x`       | format    | string         | Video scale format (example: aspect)
+`-p`       | format    | string         | Video pixel format (example: yuv420p)
+`-s`       | format    | string         | Audio sample format (example: s16p)
+`-k`       | num:den   | number:number  | Video frame rate (example: 90000:3000)
+`-q`       | num:den   | number:number  | Video frame rate (example: 90000:3000)
+`-c`       | count     | number         | Audio channel count (example: 2)
+`-v`       | codec     | string         | Output video codec (example: h264)
+`-a`       | codec     | string         | Output audio codec (example: mp3)
+`-w`       | width     | number         | Output video width (example: 1280)
+`-h`       | height    | number         | Output video height (example: 720)
+`-b`       | bytes     | number         | IO buffer size (default: 65536)
+`-t`       | type      | string         | Timestamp calculation type
+`-m`       | path      | string         | Metadata file path
+`-n`       | shift     | number         | Fix non-motion PTS/DTS
+`-z`       |           |                | Custom output handling
+`-l`       |           |                | Loop transcoding/remuxing
+`-r`       |           |                | Remux only
+`-d`       |           |                | Debug logs
+`-u`       |           |                | Usage information
 
 #### Video Scale Formats
 - `stretch` Stretch video frames to the given resolution
