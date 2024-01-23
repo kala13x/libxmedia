@@ -75,7 +75,7 @@ xarray_t* XNAL_ParseUnits(uint8_t *pBuffer, size_t nSize)
             pUnit->nUnitType = pBuffer[pUnit->nDataPos] & 0x1f;
             pUnit->nReference = pBuffer[pUnit->nDataPos] & 0x20;
 
-            if (XArray_AddData(pUnits, pUnit, XSTDNON) <= 0)
+            if (XArray_AddData(pUnits, pUnit, XSTDNON) < 0)
             {
                 XArray_Destroy(pUnits);
                 return NULL;

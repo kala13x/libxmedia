@@ -93,7 +93,7 @@ xstream_t* XStreams_NewStream(xarray_t *pStreams)
     XASSERT(pStream, NULL);
 
     int nStatus = XArray_AddData(pStreams, pStream, XSTDNON);
-    XASSERT_CALL((nStatus > 0), free, pStream, NULL);
+    XASSERT_CALL((nStatus >= 0), free, pStream, NULL);
 
     return pStream;
 }

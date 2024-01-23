@@ -55,3 +55,79 @@ cd libxmedia
 make
 sudo make install
 ```
+
+### XMedia
+`xmedia` is an example command-line tool for transcoding and remuxing media files. It allows you to convert and stream media files from one format to another with various customization options.
+
+##### Usage
+```bash
+xmedia [options]
+```
+
+#### Options:
+- `-i <path>` Input file or stream path (*)
+- `-o <path>` Output file or stream path (*)
+- `-e <format>` Input format name (example: v4l2)
+- `-f <format>` Output format name (example: mp4)
+- `-x <format>` Video scale format (example: aspect)
+- `-p <format>` Video pixel format (example: yuv420p)
+- `-s <format>` Audio sample format (example: s16p)
+- `-k <num:den>` Video frame rate (example: 90000:3000)
+- `-q <number>` Audio sample rate (example: 48000)
+- `-c <number>` Audio channel count (example: 2)
+- `-v <codec>` Output video codec (example: h264)
+- `-a <codec>` Output audio codec (example: mp3)
+- `-w <width>` Output video width (example: 1280)
+- `-h <height>` Output video height (example: 720)
+- `-b <bytes>` IO buffer size (default: 65536)
+- `-t <type>` Timestamp calculation type
+- `-m <path>` Metadata file path
+- `-n <number>` Fix non-motion PTS/DTS
+- `-z` Custom output handling
+- `-l` Loop transcoding/remuxing
+- `-r` Remux only
+- `-d` Debug logs
+- `-u` Usage information
+
+#### Video Scale Formats
+- `stretch` Stretch video frames to the given resolution
+- `aspect` Scale video frames and protect aspect ratio
+
+##### Example
+```bash
+xmedia -i /dev/video0 -o dump.mp4 -v h264 -p yuv420p -x aspect -w 1280 -h 720
+```
+
+#### Timestamp Calculation Types
+- `calculate` Calculate TS based on the elapsed time and clock rate
+- `compute` Compute TS based on the sample rate and time base
+- `rescale` Rescale original TS using av_packet_rescale_ts()
+- `round` Rescale original TS and round to the nearest value
+- `source` Use original PTS from the source stream
+
+##### Example
+```bash
+xmedia -i input.avi -o output.mp4 -t source
+```
+
+#### Metadata File Syntax
+Metadata files allow you to specify additional information for your media. The syntax is as follows:
+
+- If the line consists of three sections, it will be parsed as a chapter.
+- If it consists of two sections, it will be parsed as metadata.
+- `hh:mm:ss` time format is used for chapter start/end time.
+
+#### Metadata File Example:
+```
+00:00:00|00:00:40|Opening chapter
+00:00:40|00:10:32|Another chapter
+00:10:32|00:15:00|Final chapter
+Comment|Created with xmedia
+Title|Example meta
+Album|Examples
+```
+
+##### Example
+```bash
+xmedia -i file.mp4 -ro remuxed.mp4 -m meta.txt
+```

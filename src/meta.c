@@ -123,7 +123,7 @@ XSTATUS XMeta_AddChapter(xmeta_t *pMeta, AVRational timeBase, int64_t nStart, in
     XASSERT(pChapter, XStat_ErrCb(pStatus, "Failed to create chapter: title(%s)", pName));
 
     XSTATUS nStatus = XArray_AddData(&pMeta->chapters, pChapter, 0);
-    XASSERT_CALL((nStatus > 0), XChapter_Destroy, pChapter,
+    XASSERT_CALL((nStatus >= 0), XChapter_Destroy, pChapter,
         XStat_ErrCb(pStatus, "Failed to store chapter: title(%s)", pName));
 
     return XSTDOK;
@@ -141,7 +141,7 @@ XSTATUS XMeta_AddChapterTime(xmeta_t *pMeta, const char *pStartTime, const char 
     XASSERT(pChapter, XStat_ErrCb(pStatus, "Failed to create chapter: title(%s)", pName));
 
     XSTATUS nStatus = XArray_AddData(&pMeta->chapters, pChapter, 0);
-    XASSERT_CALL((nStatus > 0), XChapter_Destroy, pChapter,
+    XASSERT_CALL((nStatus >= 0), XChapter_Destroy, pChapter,
         XStat_ErrCb(pStatus, "Failed to store chapter: title(%s)", pName));
 
     return XSTDOK;
@@ -158,7 +158,7 @@ XSTATUS XMeta_AddChapterSec(xmeta_t *pMeta, size_t nStartSec, size_t nEndSec, co
     XASSERT(pChapter, XStat_ErrCb(pStatus, "Failed to create chapter: title(%s)", pName));
 
     XSTATUS nStatus = XArray_AddData(&pMeta->chapters, pChapter, 0);
-    XASSERT_CALL((nStatus > 0), XChapter_Destroy, pChapter,
+    XASSERT_CALL((nStatus >= 0), XChapter_Destroy, pChapter,
         XStat_ErrCb(pStatus, "Failed to store chapter: title(%s)", pName));
 
     return XSTDOK;

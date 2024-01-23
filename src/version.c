@@ -19,12 +19,19 @@ size_t XMedia_GetVersion(char *pDstStr, size_t nSize, xbool_t bShort)
 {
     if (bShort)
     {
-        return xstrncpyf(pDstStr, sizeof(pDstStr), "%d.%d.%d",
-            XMEDIA_VERSION_MAX, XMEDIA_VERSION_MIN, XMEDIA_BUILD_NUMBER);
+        return xstrncpyf(pDstStr,
+            nSize, "%d.%d.%d",
+            XMEDIA_VERSION_MAX,
+            XMEDIA_VERSION_MIN,
+            XMEDIA_BUILD_NUMBER);
     }
 
-    return xstrncpyf(pDstStr, sizeof(pDstStr), "%d.%d build %d (%s)",
-        XMEDIA_VERSION_MAX, XMEDIA_VERSION_MIN, XMEDIA_BUILD_NUMBER, __DATE__);
+    return xstrncpyf(pDstStr, nSize,
+        "%d.%d build %d (%s)",
+        XMEDIA_VERSION_MAX,
+        XMEDIA_VERSION_MIN,
+        XMEDIA_BUILD_NUMBER,
+        __DATE__);
 }
 
 const char* XMedia_Version(void)
