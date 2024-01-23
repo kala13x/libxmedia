@@ -1,0 +1,42 @@
+name: CMake
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Checkout libxutils
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/libxutils'
+        path: 'libxutils'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc g++ cmake make
+        sudo apt-get install -y libavcodec-dev libavformat-dev
+        sudo apt-get install -y libavutil-dev libswscale-dev libavdevice-dev
+
+    - name: Check versions
+      run: |
+        gcc --version
+        cmake --version
+
+    - name: Build and install libxutils
+      run: cd libxutils && ./build.sh --tool=cmake --install
+
+    - name: Make build
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make

@@ -1,0 +1,29 @@
+{
+    "build": {
+        "libs": "-lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample",
+        "flags": "-g -O2 -Wall -D_XUTILS_DEBUG",
+        "ldLibs": "../build/libxmedia.a",
+        "outputDir": "./build",
+        "overwrite": true,
+        "name": "xmedia",
+        "cxx": false,
+        "verbose": 2,
+
+        "includes": [
+            "../src" 
+        ],
+    
+        "excludes": [
+            "./libxutils",
+            "./example",
+            "./build",
+            "./smake",
+            "./cmake",
+            "./misc"
+        ]
+    },
+
+    "install": {
+        "binaryDir": "/usr/local/bin"
+    }
+}

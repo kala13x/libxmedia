@@ -1,0 +1,50 @@
+name: Full Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc g++ cmake make
+        sudo apt-get install -y libavcodec-dev libavformat-dev
+        sudo apt-get install -y libavutil-dev libswscale-dev libavdevice-dev
+
+    - name: Checkout SMake
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/smake'
+        submodules: recursive
+        path: 'smake'
+
+    - name: Checkout libxutils
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/libxutils'
+        path: 'libxutils'
+
+    - name: Install SMake
+      run: cd smake && ./build.sh --install && smake -V
+
+    - name: Install libxutils
+      run: cd libxutils && ./build.sh --install && xutils
+
+    - name: Build with SMake
+      run: ./build.sh --tool=smake --example
+
+    - name: Build with CMAKE
+      run: ./build.sh --tool=cmake --example
+
+    - name: Build with Makefile
+      run: ./build.sh --tool=make --example

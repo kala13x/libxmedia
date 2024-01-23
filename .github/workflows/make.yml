@@ -1,0 +1,34 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc g++ make
+        sudo apt-get install -y libavcodec-dev libavformat-dev
+        sudo apt-get install -y libavutil-dev libswscale-dev libavdevice-dev
+
+    - name: Checkout libxutils
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/libxutils'
+        path: 'libxutils'
+
+    - name: Build and install libxutils
+      run: cd libxutils && ./build.sh --install
+
+    - name: Build Project
+      run: make

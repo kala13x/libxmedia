@@ -1,0 +1,44 @@
+name: SMake
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Checkout SMake
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/smake'
+        submodules: recursive
+        path: 'smake'
+
+    - name: Checkout libxutils
+      uses: actions/checkout@v3
+      with:
+        repository: 'kala13x/libxutils'
+        path: 'libxutils'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc g++ cmake make
+        sudo apt-get install -y libavcodec-dev libavformat-dev
+        sudo apt-get install -y libavutil-dev libswscale-dev libavdevice-dev
+
+    - name: Build and install SMake
+      run: cd smake && ./build.sh --install
+
+    - name: Build and install libxutils
+      run: cd libxutils && ./build.sh --install
+
+    - name: Build with SMake
+      run: smake && make
