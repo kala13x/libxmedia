@@ -57,7 +57,7 @@ sudo make install
 ```
 
 ### XMedia
-`xmedia` is an example command-line tool for transcoding and remuxing media files. It allows you to convert and stream media files from one format to another with various customization options.
+`xmedia` is an example command-line tool for transcoding and remuxing media files. It allows you to convert and stream media from one format to another with various customization options.
 
 ##### Usage
 ```bash
