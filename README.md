@@ -10,7 +10,7 @@ Implementation of audio/video transmuxing functionality based on FFMPEG API with
 There are several ways to build and install the project but at first, the [libxutils](https://github.com/kala13x/libxutils) library and the `FFMPEG` development packages must be installed on the system.
 
 #### Using included script
-The simplest way to build and install a project is to use the included build script:
+After installing `libxutils` and `ffpmeg` libraries, the simplest way to build and install a project is to use the included script:
 
 ```bash
 git clone https://github.com/kala13x/libxmedia.git && ./libxmedia/build.sh --install
