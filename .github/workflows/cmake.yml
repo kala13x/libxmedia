@@ -31,12 +31,15 @@ jobs:
         gcc --version
         cmake --version
 
-    - name: Build and install libxutils
-      run: cd libxutils && ./build.sh --tool=cmake --install
+    #- name: Build and install libxutils
+    #  run: cd libxutils && ./build.sh --tool=cmake --install
 
     - name: Make build
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+        cd libxutils && cmake -Bbuild -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/libxmedia -DDEPENDENCIES_PREFIX_INSTALL=${{github.workspace}}/libxmedia && cmake --build build --target install
+
+    - name: Uploading libxmedia
+      uses: actions/upload-artifact@v4
+      with:
+        name: ubuntu_latest_libxmedia
+        path: ${{github.workspace}}/libxmedia

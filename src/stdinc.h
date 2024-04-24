@@ -10,14 +10,14 @@
 #ifndef __XMEDIA_STDINC_H__
 #define __XMEDIA_STDINC_H__
 
-#include <xutils/array.h>
-#include <xutils/xtime.h>
-#include <xutils/xjson.h>
+#include <xutils/data/array.h>
+#include <xutils/sys/xtime.h>
+#include <xutils/data/xjson.h>
 #include <xutils/xstd.h>
-#include <xutils/xsig.h>
-#include <xutils/xlog.h>
-#include <xutils/xstr.h>
-#include <xutils/xfs.h>
+#include <xutils/sys/xsig.h>
+#include <xutils/sys/xlog.h>
+#include <xutils/data/xstr.h>
+#include <xutils/sys/xfs.h>
 
 #include <libavformat/avformat.h>
 #include <libavdevice/avdevice.h>
