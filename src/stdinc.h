@@ -35,13 +35,13 @@
  and we need to use the new AVChannelLayout structure instead.
 */
 #ifndef XCODEC_USE_NEW_CHANNEL
-  #if FF_API_OLD_CHANNEL_LAYOUT
+  #if defined(FF_API_OLD_CHANNEL_LAYOUT) || defined(__APPLE__)
     #define XCODEC_USE_NEW_CHANNEL 1
   #endif
 #endif
 
 #ifndef XCODEC_USE_NEW_FIFO
-  #if FF_API_FIFO_OLD_API
+  #if defined(FF_API_FIFO_OLD_API) || defined(__APPLE__)
     #define XCODEC_USE_NEW_FIFO 1
   #endif
 #endif

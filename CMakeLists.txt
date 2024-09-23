@@ -20,7 +20,6 @@ set(SOURCES
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
-SET(DST_DIR "/usr/local/include/xmedia")
 
 target_link_libraries(${PROJECT_NAME}
     xutils
@@ -33,5 +32,5 @@ target_link_libraries(${PROJECT_NAME}
     swresample
 )
 
-install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION /usr/local/lib)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/ DESTINATION  ${DST_DIR} FILES_MATCHING PATTERN "*.h")
+install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/ DESTINATION xmedia FILES_MATCHING PATTERN "*.h")
