@@ -76,7 +76,7 @@ static void clear_cb(xarray_data_t *pArrData)
     free(pArrData->pData);
 }
 
-#if XMEDIA_AVCODEC_VER_AT_LEAST(5, 7)
+#if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
 static int muxer_cb(void *pCtx, const uint8_t *pData, int nSize)
 #else
 static int muxer_cb(void *pCtx, uint8_t *pData, int nSize)
