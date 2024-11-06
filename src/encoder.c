@@ -114,7 +114,7 @@ XSTATUS XEncoder_RestartCodec(xencoder_t *pEncoder, int nStreamIndex)
     xstatus_t *pStatus = &pEncoder->status;
 
     xstream_t *pStream = XStreams_GetByDstIndex(&pEncoder->streams, nStreamIndex);
-    XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: %s", nStreamIndex));
+    XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: dst(%d)", nStreamIndex));
 
     if (pStream->pCodecCtx != NULL)
     {
@@ -385,7 +385,7 @@ XSTATUS XEncoder_FixTS(xencoder_t *pEncoder, AVPacket *pPacket, xstream_t *pStre
     if (pStream == NULL)
     {
         pStream = XStreams_GetByDstIndex(&pEncoder->streams, pPacket->stream_index);
-        XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: %d", pPacket->stream_index));
+        XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: dst(%d)", pPacket->stream_index));
     }
 
     if (pEncoder->nTSFix &&
@@ -414,8 +414,8 @@ XSTATUS XEncoder_WritePacket(xencoder_t *pEncoder, AVPacket *pPacket)
     XASSERT(pEncoder->bOutputOpen, XStat_ErrCb(pStatus, "Output context is not open"));
 
     xstream_t *pStream = XStreams_GetByDstIndex(&pEncoder->streams, pPacket->stream_index);
-    XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: %d", pPacket->stream_index));
-    XASSERT(pStream->pAvStream, XStat_ErrCb(pStatus, "Stream is not open: %d", pStream->nDstIndex));
+    XASSERT(pStream, XStat_ErrCb(pStatus, "Stream is not found: dst(%d)", pPacket->stream_index));
+    XASSERT(pStream->pAvStream, XStat_ErrCb(pStatus, "Stream is not open: dst(%d)", pStream->nDstIndex));
 
     /* Rescale timestamps and fix non motion PTS/DTS if detected */
     XEncoder_RescaleTS(pEncoder, pPacket, pStream);
@@ -425,7 +425,7 @@ XSTATUS XEncoder_WritePacket(xencoder_t *pEncoder, AVPacket *pPacket)
     pStream->nLastDTS = pPacket->dts;
 
     pStatus->nAVStatus = av_interleaved_write_frame(pEncoder->pFmtCtx, pPacket);
-    XASSERT((pStatus->nAVStatus >= 0), XStat_ErrCb(pStatus, "Failed to write packet"));
+    XASSERT((pStatus->nAVStatus >= 0), XStat_ErrCb(pStatus, "Failed to write packet: dst(%d)", pPacket->stream_index));
 
     pStream->nPacketCount++;
     return XSTDOK;

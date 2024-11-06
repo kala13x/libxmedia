@@ -29,19 +29,18 @@
 #include <libswresample/swresample.h>
 #include <libavutil/opt.h>
 
-/*
- If FF_API_OLD_CHANNEL_LAYOUT is defined, that means 'channel' and
- 'channel_layout' members of AVCodecContext structure are deprecated
- and we need to use the new AVChannelLayout structure instead.
-*/
+#define XMEDIA_AVCODEC_VER_AT_LEAST(major,minor)  (LIBAVCODEC_VERSION_MAJOR > major || \
+                                                  (LIBAVCODEC_VERSION_MAJOR == major && \
+                                                  LIBAVCODEC_VERSION_MINOR >= minor))
+
 #ifndef XCODEC_USE_NEW_CHANNEL
-  #if defined(FF_API_OLD_CHANNEL_LAYOUT) || defined(__APPLE__)
+  #if XMEDIA_AVCODEC_VER_AT_LEAST(5, 7)
     #define XCODEC_USE_NEW_CHANNEL 1
   #endif
 #endif
 
 #ifndef XCODEC_USE_NEW_FIFO
-  #if defined(FF_API_FIFO_OLD_API) || defined(__APPLE__)
+  #if XMEDIA_AVCODEC_VER_AT_LEAST(5, 7)
     #define XCODEC_USE_NEW_FIFO 1
   #endif
 #endif
