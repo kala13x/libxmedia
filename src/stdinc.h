@@ -34,13 +34,13 @@
                                                   LIBAVCODEC_VERSION_MINOR >= minor))
 
 #ifndef XCODEC_USE_NEW_CHANNEL
-  #if XMEDIA_AVCODEC_VER_AT_LEAST(5, 7)
+  #if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
     #define XCODEC_USE_NEW_CHANNEL 1
   #endif
 #endif
 
 #ifndef XCODEC_USE_NEW_FIFO
-  #if XMEDIA_AVCODEC_VER_AT_LEAST(5, 7)
+  #if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
     #define XCODEC_USE_NEW_FIFO 1
   #endif
 #endif
