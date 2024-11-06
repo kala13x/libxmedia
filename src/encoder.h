@@ -24,16 +24,12 @@ extern "C" {
 typedef void(*xencoder_stat_cb_t)(void *pUserCtx, const char *pStatus);
 typedef void(*xencoder_err_cb_t)(void *pUserCtx, const char *pErrStr);
 typedef int(*xencoder_pkt_cb_t)(void *pUserCtx, AVPacket *pPacket);
-<<<<<<< HEAD
 
 #ifdef __APPLE__
 typedef int(*xmuxer_cb_t)(void *pUserCtx, const uint8_t *pData, int nSize);
 #else
 typedef int(*xmuxer_cb_t)(void *pUserCtx, uint8_t *pData, int nSize);
 #endif
-=======
-typedef int(*xmuxer_cb_t)(void *pUserCtx, const uint8_t *pData, int nSize);
->>>>>>> 58494e1 (Better way to detect new API)
 
 #define XENCODER_IO_SIZE  (1024 * 64)
 
