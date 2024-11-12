@@ -49,7 +49,7 @@ const char* XMedia_VersionShort(void)
 {
     if (!XSYNC_ATOMIC_GET(&g_nHaveVerShort))
     {
-        XMedia_GetVersion(g_xMediaVerLong, sizeof(g_xMediaVerLong), XTRUE);
+        XMedia_GetVersion(g_xMediaVerShort, sizeof(g_xMediaVerShort), XTRUE);
         XSYNC_ATOMIC_SET(&g_nHaveVerShort, XTRUE);
     }
 
