@@ -161,7 +161,7 @@ size_t XStreams_GetCount(xarray_t *pStreams)
 
 void XStreams_Init(xarray_t *pStreams)
 {
-    XArray_Init(pStreams, XSTDNON, XFALSE);
+    XArray_Init(pStreams, NULL, XSTDNON, XFALSE);
     pStreams->clearCb = XStreams_ClearCb;
 }
 

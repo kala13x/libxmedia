@@ -526,42 +526,42 @@ size_t XCodec_DumpStr(xcodec_t *pCodec, char *pOutput, size_t nSize)
 size_t XCodec_DumpJSON(xcodec_t *pCodec, char *pOutput, size_t nSize, size_t nTabSize, xbool_t bPretty)
 {
     XASSERT((pCodec && pOutput && nSize), XSTDINV);
-    xjson_obj_t *pCodecObj = XJSON_NewObject(NULL, XFALSE);
+    xjson_obj_t *pCodecObj = XJSON_NewObject(NULL, NULL, XFALSE);
     XASSERT((pCodecObj != NULL), XSTDERR);
 
     const char *pMediaType = av_get_media_type_string(pCodec->mediaType);
     const char *pType = pMediaType != NULL ? pMediaType : "unknown";
 
-    XJSON_AddObject(pCodecObj, XJSON_NewString("mediaType", pType));
+    XJSON_AddObject(pCodecObj, XJSON_NewString(NULL, "mediaType", pType));
 
     char sCodecIdStr[XSTR_TINY];
     XCodec_GetNameByID(sCodecIdStr, sizeof(sCodecIdStr), pCodec->codecId);
-    XJSON_AddObject(pCodecObj, XJSON_NewString("codecId", sCodecIdStr));
+    XJSON_AddObject(pCodecObj, XJSON_NewString(NULL, "codecId", sCodecIdStr));
 
-    xjson_obj_t *pRationalObj = XJSON_NewArray("timeBase", XFALSE);
+    xjson_obj_t *pRationalObj = XJSON_NewArray(NULL, "timeBase", XFALSE);
     if (pRationalObj != NULL)
     {
-        XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->timeBase.num));
-        XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->timeBase.den));
+        XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->timeBase.num));
+        XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->timeBase.den));
 
         pRationalObj->nAllowLinter = XFALSE;
         XJSON_AddObject(pCodecObj, pRationalObj);
     }
 
-    XJSON_AddObject(pCodecObj, XJSON_NewInt("compressLevel", pCodec->nCompressLevel));
-    XJSON_AddObject(pCodecObj, XJSON_NewInt("frameSize", pCodec->nFrameSize));
-    XJSON_AddObject(pCodecObj, XJSON_NewInt("bitRate", pCodec->nBitRate));
-    XJSON_AddObject(pCodecObj, XJSON_NewInt("profile", pCodec->nProfile));
+    XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "compressLevel", pCodec->nCompressLevel));
+    XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "frameSize", pCodec->nFrameSize));
+    XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "bitRate", pCodec->nBitRate));
+    XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "profile", pCodec->nProfile));
 
     if (pCodec->mediaType == AVMEDIA_TYPE_AUDIO)
     {
         const char *pSampleFormat = av_get_sample_fmt_name(pCodec->sampleFmt);
         const char *pFormat = pSampleFormat != NULL ? pSampleFormat : "unknown";
 
-        XJSON_AddObject(pCodecObj, XJSON_NewString("sampleFmt", pFormat));
-        XJSON_AddObject(pCodecObj, XJSON_NewInt("bitsPerSample", pCodec->nBitsPerSample));
-        XJSON_AddObject(pCodecObj, XJSON_NewInt("sampleRate", pCodec->nSampleRate));
-        XJSON_AddObject(pCodecObj, XJSON_NewInt("channels", pCodec->nChannels));
+        XJSON_AddObject(pCodecObj, XJSON_NewString(NULL, "sampleFmt", pFormat));
+        XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "bitsPerSample", pCodec->nBitsPerSample));
+        XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "sampleRate", pCodec->nSampleRate));
+        XJSON_AddObject(pCodecObj, XJSON_NewInt(NULL, "channels", pCodec->nChannels));
     }
     else if (pCodec->mediaType == AVMEDIA_TYPE_VIDEO)
     {
@@ -571,34 +571,34 @@ size_t XCodec_DumpJSON(xcodec_t *pCodec, char *pOutput, size_t nSize, size_t nTa
         const char *pPixelFormat = av_get_pix_fmt_name(pCodec->pixFmt);
         const char *pFormat = pPixelFormat != NULL ? pPixelFormat : "unknown";
 
-        XJSON_AddObject(pCodecObj, XJSON_NewString("scaleFmt", sScaleFmt));
-        XJSON_AddObject(pCodecObj, XJSON_NewString("pixFmt", pFormat));
+        XJSON_AddObject(pCodecObj, XJSON_NewString(NULL, "scaleFmt", sScaleFmt));
+        XJSON_AddObject(pCodecObj, XJSON_NewString(NULL, "pixFmt", pFormat));
 
-        pRationalObj = XJSON_NewArray("aspectRatio", XFALSE);
+        pRationalObj = XJSON_NewArray(NULL, "aspectRatio", XFALSE);
         if (pRationalObj != NULL)
         {
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->aspectRatio.num));
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->aspectRatio.den));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->aspectRatio.num));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->aspectRatio.den));
 
             pRationalObj->nAllowLinter = XFALSE;
             XJSON_AddObject(pCodecObj, pRationalObj);
         }
 
-        pRationalObj = XJSON_NewArray("frameRate", XFALSE);
+        pRationalObj = XJSON_NewArray(NULL, "frameRate", XFALSE);
         if (pRationalObj != NULL)
         {
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->frameRate.num));
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->frameRate.den));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->frameRate.num));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->frameRate.den));
 
             pRationalObj->nAllowLinter = XFALSE;
             XJSON_AddObject(pCodecObj, pRationalObj);
         }
 
-        pRationalObj = XJSON_NewArray("size", XFALSE);
+        pRationalObj = XJSON_NewArray(NULL, "size", XFALSE);
         if (pRationalObj != NULL)
         {
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->nWidth));
-            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, pCodec->nHeight));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->nWidth));
+            XJSON_AddObject(pRationalObj, XJSON_NewInt(NULL, NULL, pCodec->nHeight));
 
             pRationalObj->nAllowLinter = XFALSE;
             XJSON_AddObject(pCodecObj, pRationalObj);
@@ -606,7 +606,7 @@ size_t XCodec_DumpJSON(xcodec_t *pCodec, char *pOutput, size_t nSize, size_t nTa
     }
 
     xjson_writer_t writer;
-    XJSON_InitWriter(&writer, pOutput, nSize);
+    XJSON_InitWriter(&writer, NULL, pOutput, nSize);
 
     writer.nTabSize = nTabSize;
     writer.nPretty = bPretty;
@@ -624,7 +624,7 @@ XSTATUS XCodec_FromJSON(xcodec_t *pCodec, char* pJson, size_t nLength)
     XCodec_Init(pCodec);
 
     xjson_t json;
-    if (!XJSON_Parse(&json, pJson, nLength))
+    if (!XJSON_Parse(&json, NULL, pJson, nLength))
     {
         XJSON_Destroy(&json);
         return XSTDERR;

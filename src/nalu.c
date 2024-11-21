@@ -52,7 +52,7 @@ size_t XNAL_CheckStartCode(uint8_t *pBuffer, size_t nPos)
 
 xarray_t* XNAL_ParseUnits(uint8_t *pBuffer, size_t nSize)
 {
-    xarray_t *pUnits = XArray_New(XSTDNON, XFALSE);
+    xarray_t *pUnits = XArray_New(NULL, XSTDNON, XFALSE);
     XASSERT(pUnits, NULL);
 
     pUnits->clearCb = XNAL_UnitClearCb;

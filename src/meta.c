@@ -80,7 +80,7 @@ void XMeta_Init(xmeta_t *pMeta)
     XASSERT_VOID(pMeta);
 
     XStat_Init(&pMeta->status, XSTDNON, NULL, NULL);
-    XArray_Init(&pMeta->chapters, 0, XFALSE);
+    XArray_Init(&pMeta->chapters, NULL, 0, XFALSE);
 
     pMeta->chapters.clearCb = XMeta_ClearCb;
     pMeta->pData = NULL;

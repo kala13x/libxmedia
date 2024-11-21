@@ -113,7 +113,7 @@ static int decoder_cb(void *pCtx, AVFrame *pFrame, int nStreamIndex)
 
 void XTranscoder_Init(xtranscoder_t *pTransmuxer)
 {
-    XArray_Init(&pTransmuxer->streams, XSTDNON, XFALSE);
+    XArray_Init(&pTransmuxer->streams, NULL, XSTDNON, XFALSE);
     pTransmuxer->streams.clearCb = clear_cb;
 
     pTransmuxer->args.videoCodec = AV_CODEC_ID_NONE;
