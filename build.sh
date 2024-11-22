@@ -126,11 +126,11 @@ clean_project
 build_lbrary
 
 for arg in "$@"; do
-    if [[ $arg == "--example" ]]; then
+    if [[ $arg == "--example" || $arg == "-e" ]]; then
         build_example
     fi
 
-    if [[ $arg == "--install" ]]; then
+    if [[ $arg == "--install" || $arg == "-i" ]]; then
         install_library
         install_example
     fi
@@ -138,8 +138,7 @@ done
 
 # Do cleanup last
 for arg in "$@"; do
-    if [[ $arg == "--cleanup" ||
-          $arg == "--clean" ]]; then
+    if [[ $arg == "--clean" || $arg == "-c" ]]; then
         clean_project
     fi
 done

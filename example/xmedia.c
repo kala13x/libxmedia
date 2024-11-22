@@ -76,7 +76,7 @@ static void clear_cb(xarray_data_t *pArrData)
     free(pArrData->pData);
 }
 
-#if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
+#if XMEDIA_AVCODEC_VER_AT_LEAST(60, 31)
 static int muxer_cb(void *pCtx, const uint8_t *pData, int nSize)
 #else
 static int muxer_cb(void *pCtx, uint8_t *pData, int nSize)
@@ -97,12 +97,10 @@ static int encoder_cb(void *pCtx, AVPacket *pPacket)
 
 static int decoder_cb(void *pCtx, AVFrame *pFrame, int nStreamIndex)
 {
-    xlogd("Decoder callback: stream(%d), size(%d), pts(%lld)",
-        nStreamIndex, pFrame->pkt_size, pFrame->pts);
-
     xtranscoder_t *pTransmuxer = (xtranscoder_t*)pCtx;
     xencoder_t *pDecoder = (xencoder_t*)&pTransmuxer->decoder;
     xencoder_t *pEncoder = (xencoder_t*)&pTransmuxer->encoder;
+    xlogd("Decoder callback: stream(%d), pts(%lld)", nStreamIndex, pFrame->pts);
 
     xstream_t *pStream = XStreams_GetBySrcIndex(&pDecoder->streams, nStreamIndex);
     XASSERT(pStream, xthrow("Source stream is not found: src(%d)", nStreamIndex));
