@@ -76,7 +76,7 @@ static void clear_cb(xarray_data_t *pArrData)
     free(pArrData->pData);
 }
 
-#if XMEDIA_AVCODEC_VER_AT_LEAST(60, 31)
+#if XMEDIA_AVFORMAT_AT_LEAST(60, 16) && !defined FF_API_AVIO_WRITE_NONCONST
 static int muxer_cb(void *pCtx, const uint8_t *pData, int nSize)
 #else
 static int muxer_cb(void *pCtx, uint8_t *pData, int nSize)

@@ -25,7 +25,7 @@ typedef void(*xencoder_stat_cb_t)(void *pUserCtx, const char *pStatus);
 typedef void(*xencoder_err_cb_t)(void *pUserCtx, const char *pErrStr);
 typedef int(*xencoder_pkt_cb_t)(void *pUserCtx, AVPacket *pPacket);
 
-#if XMEDIA_AVCODEC_VER_AT_LEAST(60, 31)
+#if XMEDIA_AVFORMAT_AT_LEAST(60, 31) && !defined FF_API_AVIO_WRITE_NONCONST
 typedef int(*xmuxer_cb_t)(void *pUserCtx, const uint8_t *pData, int nSize);
 #else
 typedef int(*xmuxer_cb_t)(void *pUserCtx, uint8_t *pData, int nSize);

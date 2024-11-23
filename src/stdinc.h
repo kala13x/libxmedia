@@ -29,18 +29,22 @@
 #include <libswresample/swresample.h>
 #include <libavutil/opt.h>
 
-#define XMEDIA_AVCODEC_VER_AT_LEAST(major,minor)  (LIBAVCODEC_VERSION_MAJOR > major || \
-                                                  (LIBAVCODEC_VERSION_MAJOR == major && \
-                                                  LIBAVCODEC_VERSION_MINOR >= minor))
+#define XMEDIA_AVCODEC_AT_LEAST(major,minor)  (LIBAVCODEC_VERSION_MAJOR > major || \
+                                              (LIBAVCODEC_VERSION_MAJOR == major && \
+                                               LIBAVCODEC_VERSION_MINOR >= minor))
+
+#define XMEDIA_AVFORMAT_AT_LEAST(major,minor)  (LIBAVFORMAT_VERSION_MAJOR > major || \
+                                               (LIBAVFORMAT_VERSION_MAJOR == major && \
+                                                LIBAVFORMAT_VERSION_MINOR >= minor))
 
 #ifndef XCODEC_USE_NEW_CHANNEL
-  #if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
+  #if XMEDIA_AVCODEC_AT_LEAST(59, 24)
     #define XCODEC_USE_NEW_CHANNEL 1
   #endif
 #endif
 
 #ifndef XCODEC_USE_NEW_FIFO
-  #if XMEDIA_AVCODEC_VER_AT_LEAST(59, 24)
+  #if XMEDIA_AVCODEC_AT_LEAST(59, 24)
     #define XCODEC_USE_NEW_FIFO 1
   #endif
 #endif
