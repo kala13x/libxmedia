@@ -4,7 +4,7 @@
 [![SMake](https://github.com/kala13x/libxmedia/actions/workflows/smake.yml/badge.svg)](https://github.com/kala13x/libxmedia/actions/workflows/smake.yml)
 
 # libxmedia
-Implementation of audio/video transmuxing functionality based on FFMPEG API with a fully functional example.
+A cross-platform library for audio/video transmuxing, built on FFmpeg. Designed for simplicity and performance, it provides an intuitive high-level API and includes a fully functional example.
 
 ### Installation
 There are several ways to build and install the project but at first, the [libxutils](https://github.com/kala13x/libxutils) library and the `FFMPEG` development packages must be installed on the system.
