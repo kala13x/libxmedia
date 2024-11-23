@@ -9,10 +9,13 @@
 
 #include "nalu.h"
 
+#define XNAL_UNIT_INITIAL_COUNT 32
+
 static void XNAL_UnitClearCb(xarray_data_t *pArrData)
 {
     XASSERT_VOID_RET(pArrData);
-    free(pArrData->pData);
+    xpool_t *pPool = (xpool_t*)pArrData->pPool;
+    xfreen(pPool, pArrData->pData, sizeof(xnal_unit_t));
 }
 
 void XNAL_InitUnit(xnal_unit_t *pUnit)
@@ -52,7 +55,8 @@ size_t XNAL_CheckStartCode(uint8_t *pBuffer, size_t nPos)
 
 xarray_t* XNAL_ParseUnits(uint8_t *pBuffer, size_t nSize)
 {
-    xarray_t *pUnits = XArray_New(NULL, XSTDNON, XFALSE);
+    size_t nPoolSize = sizeof(xnal_unit_t) * XNAL_UNIT_INITIAL_COUNT;
+    xarray_t *pUnits = XArray_NewPool(nPoolSize, XSTDNON, XFALSE);
     XASSERT(pUnits, NULL);
 
     pUnits->clearCb = XNAL_UnitClearCb;
