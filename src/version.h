@@ -14,7 +14,7 @@
 
 #define XMEDIA_VERSION_MAX     1
 #define XMEDIA_VERSION_MIN     2
-#define XMEDIA_BUILD_NUMBER    18
+#define XMEDIA_BUILD_NUMBER    19
 
 #ifdef __cplusplus
 extern "C" {

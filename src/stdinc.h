@@ -10,13 +10,13 @@
 #ifndef __XMEDIA_STDINC_H__
 #define __XMEDIA_STDINC_H__
 
-#include <xutils/array.h>
-#include <xutils/xtime.h>
-#include <xutils/xjson.h>
 #include <xutils/xstd.h>
-#include <xutils/xsig.h>
-#include <xutils/xlog.h>
-#include <xutils/xstr.h>
+#include <xutils/xtime.h>
+#include <xutils/array.h>
+#include <xutils/json.h>
+#include <xutils/sig.h>
+#include <xutils/log.h>
+#include <xutils/str.h>
 #include <xutils/xfs.h>
 
 #include <libavformat/avformat.h>
