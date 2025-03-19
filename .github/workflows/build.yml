@@ -40,11 +40,11 @@ jobs:
     - name: Install libxutils
       run: cd libxutils && ./build.sh --install && xutils
 
+    - name: Build with Makefile
+      run: ./build.sh --tool=make --example
+
     - name: Build with SMake
       run: ./build.sh --tool=smake --example
 
     - name: Build with CMAKE
       run: ./build.sh --tool=cmake --example
-
-    - name: Build with Makefile
-      run: ./build.sh --tool=make --example

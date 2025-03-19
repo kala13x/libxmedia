@@ -1,6 +1,6 @@
 {
     "build": {
-        "libs": "-lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample",
+        "libs": "-lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample -lfreetype",
         "flags": "-g -O2 -Wall -D_XUTILS_DEBUG",
         "ldLibs": "../build/libxmedia.a",
         "outputDir": "./build",
