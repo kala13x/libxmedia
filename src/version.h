@@ -13,8 +13,8 @@
 #include "stdinc.h"
 
 #define XMEDIA_VERSION_MAX     1
-#define XMEDIA_VERSION_MIN     2
-#define XMEDIA_BUILD_NUMBER    19
+#define XMEDIA_VERSION_MIN     3
+#define XMEDIA_BUILD_NUMBER    1
 
 #ifdef __cplusplus
 extern "C" {

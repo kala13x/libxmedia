@@ -4,8 +4,8 @@
 ####################################
 
 CFLAGS = -g -O2 -Wall -D_XUTILS_DEBUG
-CFLAGS += -I./src
-LIBS = -lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample
+CFLAGS += -I./src -I/usr/include/freetype2
+LIBS = -lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample -lfreetype
 NAME = libxmedia.a
 ODIR = ./build
 OBJ = o

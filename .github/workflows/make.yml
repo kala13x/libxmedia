@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y gcc g++ make
+        sudo apt-get install -y gcc g++ make libfreetype-dev
         sudo apt-get install -y libavcodec-dev libavformat-dev
         sudo apt-get install -y libavutil-dev libswscale-dev libavdevice-dev
 

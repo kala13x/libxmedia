@@ -26,6 +26,7 @@ target_link_libraries(${PROJECT_NAME}
         avdevice
         swscale
         swresample
+        freetype
 )
 
 # Installation rules

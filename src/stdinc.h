@@ -10,6 +10,10 @@
 #ifndef __XMEDIA_STDINC_H__
 #define __XMEDIA_STDINC_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <xutils/xstd.h>
 #include <xutils/xtime.h>
 #include <xutils/array.h>
@@ -22,12 +26,19 @@
 #include <libavformat/avformat.h>
 #include <libavdevice/avdevice.h>
 #include <libavcodec/avcodec.h>
-#include <libswscale/swscale.h>
-#include <libavutil/imgutils.h>
 #include <libavutil/samplefmt.h>
-#include <libavutil/channel_layout.h>
-#include <libswresample/swresample.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/pixfmt.h>
+#include <libavutil/frame.h>
+#include <libavutil/mem.h>
 #include <libavutil/opt.h>
+#include <libavutil/error.h>
+#include <libavutil/channel_layout.h>
+#include <libavfilter/avfilter.h>
+#include <libavfilter/buffersink.h>
+#include <libavfilter/buffersrc.h>
+#include <libswresample/swresample.h>
+#include <libswscale/swscale.h>
 
 #define XMEDIA_AVCODEC_AT_LEAST(major,minor)  (LIBAVCODEC_VERSION_MAJOR > major || \
                                               (LIBAVCODEC_VERSION_MAJOR == major && \
@@ -47,6 +58,10 @@
   #if XMEDIA_AVCODEC_AT_LEAST(59, 24)
     #define XCODEC_USE_NEW_FIFO 1
   #endif
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* __XMEDIA_STDINC_H__ */

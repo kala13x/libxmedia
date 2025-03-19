@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(xmedia)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O2 -Wall -D_XUTILS_DEBUG")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O2 -Wall -D_XUTILS_DEBUG -I/usr/include/freetype2")
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
@@ -30,6 +30,7 @@ target_link_libraries(${PROJECT_NAME}
     avdevice
     swscale
     swresample
+    freetype
 )
 
 install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib)

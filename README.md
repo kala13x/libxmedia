@@ -7,10 +7,10 @@
 A cross-platform library for audio/video transmuxing, built on FFmpeg. Designed for simplicity and performance, it provides an intuitive high-level API and includes a fully functional example.
 
 ### Installation
-There are several ways to build and install the project but at first, the [libxutils](https://github.com/kala13x/libxutils) library and the `FFMPEG` development packages must be installed on the system.
+There are several ways to build and install the project but at first, the [libxutils](https://github.com/kala13x/libxutils) library, `FFMPEG` and `freetype` development packages must be installed on the system.
 
 #### Using included script
-After installing `libxutils` and `ffpmeg` libraries, the simplest way to build and install a project is to use the included script:
+After installing `libxutils`, `ffpmeg` and `freetype` libraries, the simplest way to build and install a project is to use the included script:
 
 ```bash
 git clone https://github.com/kala13x/libxmedia.git && ./libxmedia/build.sh --install
@@ -75,7 +75,7 @@ Option     | Syntax    | Type           | Description
 `-p`       | format    | string         | Video pixel format (example: yuv420p)
 `-s`       | format    | string         | Audio sample format (example: s16p)
 `-k`       | num:den   | number:number  | Video frame rate (example: 90000:3000)
-`-q`       | num:den   | number:number  | Video frame rate (example: 90000:3000)
+`-q`       | number    | number         | Audio sample rate (example: 48000)
 `-c`       | count     | number         | Audio channel count (example: 2)
 `-v`       | codec     | string         | Output video codec (example: h264)
 `-a`       | codec     | string         | Output audio codec (example: mp3)

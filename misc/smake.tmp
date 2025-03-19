@@ -1,7 +1,7 @@
 {
     "build": {
-        "libs": "-lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample",
-        "flags": "-g -O2 -Wall -D_XUTILS_DEBUG",
+        "libs": "-lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample -lfreetype",
+        "flags": "-g -O2 -Wall -D_XUTILS_DEBUG -I/usr/include/freetype2",
         "outputDir": "./build",
         "name": "libxmedia.a",
         "overwrite": true,

@@ -6,7 +6,7 @@
 CFLAGS = -g -O2 -Wall -D_XUTILS_DEBUG
 CFLAGS += -I../src
 LD_LIBS = ../build/libxmedia.a
-LIBS = -lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample
+LIBS = -lxutils -lpthread -lavutil -lavcodec -lavformat -lavdevice -lswscale -lswresample -lfreetype
 NAME = xmedia
 ODIR = ./build
 OBJ = o
